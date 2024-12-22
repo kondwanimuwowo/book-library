@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Book Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <h1>My Book Library</h1>
+    <div class="container">
+        <table class="main-table" id="main-table">
+            <thead>
+                <tr>
+                    <th>Book #</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>Pages</th>
+                    <th>Year</th>
+                    <th>Read</th>
+                    <th>Info</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic Content -->
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit" id="btn" class="btn">Add Book</button>
+
+    <dialog>
+        <form id="form" method="dialog">
+            <label for="book-title">Book Title</label>
+            <input type="text" name="book-title" id="book-title">
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author">
+            <label for="pages">Pages</label>
+            <input type="text" name="pages" id="pages">
+            <label for="year">Year</label>
+            <input type="text" name="year" id="year">
+            <label for="read">Have you read this book?</label>
+            <input type="checkbox" name="read" id="read">
+            <button type="submit" id="bt" class="bt">Submit</button>
+        </form>
+    </dialog>
+</body>
+
+</html>
