@@ -2,7 +2,7 @@
 let myLibrary = [];
 
 // Book Objet Constructor
-function Book(title = "unknown", author = "unknown", pages = 0, year = "unknown", read = false) {
+function Book(title = "unknown", author = "unknown", pages = 0, year = 1990, read = false) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -52,10 +52,7 @@ const tBody = document.querySelector("tbody");
 function displayBooks(...books) {
   
   // Clear existing table except the table header
-  tBody.innerHTML = `
-        <tbody>
-        </tbody>
-  `;
+  tBody.innerHTML = ``;
 
   myLibrary.forEach(function(book, index) {
     let html =  `<tr>
@@ -89,11 +86,11 @@ displayBooks(myLibrary);
 const bt = document.getElementById("bt");
 const dialog = document.querySelector("dialog");
 const btn = document.querySelector("#btn");
-const form = document.getElementById("form")
+const form = document.getElementById("form");
 
 // Listen for the "click" event on the "Add Book" button and show the dialog
 btn.addEventListener("click", () => {
-  dialog.showModal()
+  dialog.showModal();
 });
 
 // Listen for the "submit" event
