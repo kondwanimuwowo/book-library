@@ -71,8 +71,23 @@ tr:hover {
   transition: background-color 0.3s ease;
 }
 
-.remove-btn:hover {
+.remove:hover {
   background-color: #8f1a25;
+}
+
+.toggle {
+  font-size: 1rem;
+  color: white;
+  background-color: #28a745; /* Red for negative action */
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #1b702d;
 }
 
 /* Form Styles */

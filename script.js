@@ -15,6 +15,11 @@ Book.prototype.info = function() {
   return `${this.title} by ${this.author}, ${this.pages} pages, ${this.year}, ${this.read ? "Read" : "Not read yet"}`;
 };
 
+// Toggling the read status
+Book.prototype.toggleRead = function() {
+  return this.read = !this.read;
+};
+
 // Sample books data  
 const atomicHabits = new Book("Atomic Habits", "James Clear", 320, 2018, false);
 const thePowerOfNow = new Book("The Power of Now", "Eckhart Tolle", 236, 1997, true);
@@ -49,7 +54,7 @@ addBookToLibrary(
 
 const tBody = document.querySelector("tbody");
 
-function displayBooks(...books) {
+function displayBooks() {
   
   // Clear existing table except the table header
   tBody.innerHTML = ``;
@@ -62,22 +67,27 @@ function displayBooks(...books) {
                   <td>${book.pages}</td>
                   <td>${book.year}</td>
                   <td>${book.read ? "Read": "Not read yet"}</td>
+                  <td><button class="toggle" data-index="${index}">Read</button></td>
                   <td>${book.info()}</td>
                   <td><button class="remove-btn" data-index="${index}">Remove</button></td>
                 </tr>`;
     tBody.insertAdjacentHTML("beforeend", html);
   });
-
-  // Logic for handling the remove button
-  const removeButtons = document.querySelectorAll(".remove-btn");
-  removeButtons.forEach(button => {
-    button.addEventListener("click", (e) => {
-      const indexToRemove = e.target.getAttribute("data-index");
-      myLibrary.splice(indexToRemove, 1);  // Remove the book from the array
-      displayBooks();  // Re-render the updated library
-    });
-  });
 }
+
+  // Event delegation to handle button clicks
+  tBody.addEventListener("click", (e) => {
+    if (e.target.classList.contains("toggle")) {
+      const indexToToggle = e.target.getAttribute("data-index");
+      myLibrary[indexToToggle].toggleRead();
+      displayBooks();
+    }
+    if (e.target.classList.contains("remove-btn")) {
+      const indexToRemove = e.target.getAttribute("data-index");
+      myLibrary.splice(indexToRemove, 1);
+      displayBooks();
+    }
+  });
 
 // Call function to display the sample book objects
 displayBooks(myLibrary);
@@ -105,7 +115,11 @@ form.addEventListener("submit", (e) => {
   const pages = document.getElementById("pages").value;
   const year = document.getElementById("year").value;
   const read = document.getElementById("read").checked;
-  
+
+  if (!title || !author || pages <= 0 || year <= 0) {
+    alert("Please provide valid book details!");
+    return;
+  }
   // Create new book object
   const newBook = new Book(title, author, pages, year, read);
   
